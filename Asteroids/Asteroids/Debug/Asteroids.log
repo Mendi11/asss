@@ -1,0 +1,8 @@
+﻿  GameController.cpp
+d:\projekt\c++\asteroids\asteroids\gamecontroller.cpp(109): warning C4018: '<': signed/unsigned mismatch
+d:\projekt\c++\asteroids\asteroids\gamecontroller.cpp(127): warning C4018: '<': signed/unsigned mismatch
+d:\projekt\c++\asteroids\asteroids\gamecontroller.cpp(138): warning C4018: '<': signed/unsigned mismatch
+d:\projekt\c++\asteroids\asteroids\gamecontroller.cpp(153): warning C4018: '<': signed/unsigned mismatch
+d:\projekt\c++\asteroids\asteroids\gamecontroller.cpp(193): warning C4018: '<': signed/unsigned mismatch
+d:\projekt\c++\asteroids\asteroids\gamecontroller.cpp(197): warning C4018: '<': signed/unsigned mismatch
+  Asteroids.vcxproj -> D:\Projekt\C++\Asteroids\Debug\Asteroids.exe
