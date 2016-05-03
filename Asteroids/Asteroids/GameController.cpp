@@ -52,7 +52,7 @@ GameController::GameController() :
 	player = new Player(m_PlayerTexture);
 	enemie = new Enemie(m_EnemyTexture);
 	bullet = new Bullets(m_BulletTexture, 0, 0);
-	ebullet = new Bullets(m_EBulletTexture, 0, 0);
+	ebullet = new EBullets(m_EBulletTexture, 0, 0);
 
 	m_Characters.push_back(player);
 
@@ -124,16 +124,20 @@ void GameController::Update()
 
 		EneimeDir(*m_Characters[i]);
 	}
+	for (int i = 0; i < m_EBullets.size(); i++)
+	{
+		m_EBullets[i]->Update(1, 60, temp);
+	}
 	for (int i = 0; i < m_Bullets.size(); i++)
 	{
 		float temp = dt.asSeconds();
 		m_Bullets[i]->Update(-1, 60 * 11, temp);
 		
-		if (BulletPosition(*m_Bullets[i]))
+	/*	if (BulletPosition(*m_Bullets[i]))
 		{
 			m_Bullets.erase(m_Bullets.begin() + i);
 			break;
-		}
+		}*/
 
 		for (int j = 0; j < m_Characters.size(); j++)
 		{
@@ -141,8 +145,8 @@ void GameController::Update()
 			{
 				std::cout << i << std::endl;
 
-				m_Bullets.erase(m_Bullets.begin() + i);
-				m_Characters.erase(m_Characters.begin() + j);
+				//m_Bullets.erase(m_Bullets.begin() + i);
+				//m_Characters.erase(m_Characters.begin() + j);
 				m_Score += 10;
 				break;
 			}
@@ -157,7 +161,7 @@ void GameController::Update()
 				if (m_Characters[j]->getIsFriendly() == false)
 				{
 					m_Health--;
-					m_Characters.erase(m_Characters.begin() + j);
+					//m_Characters.erase(m_Characters.begin() + j);
 				}
 
 				//break;
@@ -166,13 +170,15 @@ void GameController::Update()
 	}
 
 	
-		if (m_Characters.size() > 1)
-		{
+	
 			
-			m_EBullets.push_back(new Bullets(m_EBulletTexture, m_Characters[1]->m_Position.x, m_Characters[1]->m_Position.y));
-			//m_EBullets[0]->Update(1, 60, temp);
-			m_BulletDelay = 3;
-		}
+	if (m_BulletDelay <= 0)
+	{ 
+
+		std::cout << "Shoot" << std::endl;
+		m_EBullets.push_back(new EBullets(m_EBulletTexture,10,10));
+		m_BulletDelay = 3;
+	}
 
 
 	m_text.setString("Score: " + std::to_string(m_Score));
@@ -196,6 +202,11 @@ void GameController::Draw()
 	{
 		m_Bullets[i]->Draw(m_Window);
 	}
+	for (int i = 0; i < m_EBullets.size(); i++)
+	{
+		m_EBullets[i]->Draw(m_Window);
+	}
+
 
 	//m_Window.draw(m_PlayerHealth);
 	m_Window.draw(m_text);

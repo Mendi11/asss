@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Enemie.h"
 #include "Bullets.h"
+#include "EBullets.h"
 
 class Character;
 class GameController
@@ -28,10 +29,10 @@ private:
 	std::vector<sf::Drawable*> m_Draw;
 	std::vector<Character*> m_Characters;
 	std::vector<Bullets*> m_Bullets;
-	std::vector<Bullets*> m_EBullets;
+	std::vector<EBullets*> m_EBullets;
 
 	Bullets* bullet;
-	Bullets* ebullet;
+	EBullets* ebullet;
 	Player* player;
 	Enemie* enemie;
 
